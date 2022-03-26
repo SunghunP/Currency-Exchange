@@ -21,3 +21,16 @@ $.ajax({
     getCodes(data2.supported_codes, $searchLeft)
     getCodes(data2.supported_codes, $searchRight)
 })
+
+document.querySelector('button').addEventListener("click", () => {
+    $sl = $searchLeft.val()
+    $sr = $searchRight.val()
+    $il = $inputLeft.val()
+    $.ajax({
+        url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${$sl}/${$sr}`})
+    .then((data) => {
+        const rate = data.conversion_rate
+        const final = $il * rate
+        $display.text(final)
+    })
+})
