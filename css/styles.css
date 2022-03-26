@@ -1,0 +1,10 @@
+:root {
+    --color-base: #66FFCC;
+    /* analogous colors are soft and blend together well  */
+    --color-analogous-soft-1: #66FF66;
+    --color-analogous-soft-2: #66CCFF;
+    /* tetradic colors  */
+    --color-tetradic-1: #FF6699;
+    --color-tetradic-2: #6699FF;
+    --color-tetradic-2b: #FFCC66;
+}
