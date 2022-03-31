@@ -9,8 +9,6 @@ const $searchLeft = $('#search-left')
 const $searchRight = $('#search-right')
 const $inputLeft = $('#input-left')
 const $inputRight = $('#input-right')
-const $display = $('#display')
-
 // Function to get country codes from api and append them the html element you want. 
 function getCodes(data, selection) {
     for (let array of data) {
@@ -21,6 +19,7 @@ function getCodes(data, selection) {
     }
 }
 
+// // api call to populate the select elements programmatically
 // $.ajax({
 //     url: `https://v6.exchangerate-api.com/v6/${API_KEY}/codes`})
 // .then((data2) => {
@@ -43,17 +42,29 @@ function getCodes(data, selection) {
 //     })
 // })
 
-document.querySelectorAll('select').forEach(select => select.addEventListener("change", () => {
-    let selectleftVal = $searchLeft.val()
-    let selectRightVal = $searchRight.val()
-    let inputLeftVal = $inputLeft.val()
-    let inputRightVal = $inputRight.val()
-    $.ajax({
-        url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${selectleftVal}/${selectRightVal}`})
-    .then((data) => {
-        let rate = data.conversion_rate
-        let final = inputLeftVal * rate.toFixed(2)
-        $display.text(final)
-    })
-}))
+// I should use event propogation to handle the change of the select and input elements.
+// 
+// event listener that selects the parent of the two select elements and input element and listens for a change in any of them.
+document.querySelector('#search-bar').addEventListener("change", (event) => {
+    console.log("This reached inside the div event listener")
+
+    if (event.target.tagName === 'SELECT') {
+        let selectleftVal = $searchLeft.val()
+        let selectRightVal = $searchRight.val()
+        let inputLeftVal = $inputLeft.val()
+        $.ajax({
+        //url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${selectleftVal}/${selectRightVal}`
+        url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/USD/CAD`
+        })
+        .then((data) => {
+
+            console.log("success")
+            let rate = data.conversion_rate
+            let final = inputLeftVal * rate.toFixed(2)
+            $displayRight.text(final)
+            
+
+        })
+    }
+})
 
