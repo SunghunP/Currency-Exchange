@@ -117,6 +117,10 @@ div#conversion-rate {
     margin-top: 45px;
 }
 
+#search-input {
+    justify-content: space-between;
+}
+
 @media screen and (max-width: 820px) {
     body {
         min-width: 300px;
@@ -126,7 +130,6 @@ div#conversion-rate {
     }
     #search-input {
         flex-direction: column;
-
         justify-content: space-around;
         width: 80%;
         padding: 35px 5px 35px 5px;
