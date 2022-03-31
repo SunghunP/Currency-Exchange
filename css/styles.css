@@ -10,6 +10,10 @@
     --color-tetradic-compliment: #e9c46a;
 }
 
+* {
+    font-family: 'Barlow', sans-serif;
+}
+
 body {
     margin: auto;
     background-color: var(--color-base);
@@ -39,8 +43,8 @@ div {
 }
 
 footer {
-    font-size: 25px;
-    margin-bottom: 20px;
+    font-size: 30px;
+    margin-bottom: 30px;
 }
 
 #website-details {
