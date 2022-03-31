@@ -43,7 +43,7 @@ document.querySelector('#search-bar').addEventListener("change", (event) => {
             let convertedVal = 0
 
             // displays the rate of exchange for the two currencies.
-            $displayRate.text(`1 ${selectleftVal} is equal to ${rate} ${selectRightVal}`)
+            $displayRate.text(`1 ${selectleftVal} is equal to ${rate.toFixed(2)} ${selectRightVal}`)
 
             // event listener that looks for any changes in both of the input fields.
             document.querySelectorAll('input').forEach(input => 
