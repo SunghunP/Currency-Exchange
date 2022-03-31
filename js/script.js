@@ -34,3 +34,11 @@ document.querySelector('button').addEventListener("click", () => {
         $display.text(final)
     })
 })
+
+// use restful country api to get country flags 
+// very useful since you can search up by currency.
+// https://restcountries.com/v3.1/currency/pen
+
+// Filter Response for restful country api 
+// You can filter the output of your request to include only the specified fields.
+// https://restcountries.com/v3.1/currency/pen?fields=capital only gets the capital field.
