@@ -1,11 +1,16 @@
 // Grab API key
 const API_KEY = config.API_KEY
 
+// Local storage so i dont have to do the api call again when user refreshes.
+myStorage = window.localStorage
+
+// Constant Variables.
 const $searchLeft = $('#search-left')
 const $searchRight = $('#search-right')
 const $inputLeft = $('#input-left')
 const $display = $('#display')
 
+// Function to get country codes from api and append them the html element you want. 
 function getCodes(data, selection) {
     for (let array of data) {
         const $option = $('<option></option>')
@@ -23,14 +28,15 @@ $.ajax({
 })
 
 document.querySelector('button').addEventListener("click", () => {
-    $sl = $searchLeft.val()
-    $sr = $searchRight.val()
-    $il = $inputLeft.val()
+    let selectleftVal = $searchLeft.val()
+    let selectRightVal = $searchRight.val()
+    let inputLeftVal = $inputLeft.val()
     $.ajax({
-        url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${$sl}/${$sr}`})
+        url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${selectleftVal}/${selectRightVal}`})
     .then((data) => {
         const rate = data.conversion_rate
-        const final = $il * rate
+        let final = inputLeftVal * rate
+        final.toFixed(2)
         $display.text(final)
     })
 })
