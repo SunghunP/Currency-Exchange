@@ -1,10 +1,91 @@
 :root {
-    --color-base: #66FFCC;
+    --color-base: #67a5f2;
     /* analogous colors are soft and blend together well  */
-    --color-analogous-soft-1: #66FF66;
-    --color-analogous-soft-2: #66CCFF;
-    /* tetradic colors  */
-    --color-tetradic-1: #FF6699;
-    --color-tetradic-2: #6699FF;
-    --color-tetradic-2b: #FFCC66;
+    --color-analogous-soft-1: #67ebf2;
+    --color-analogous-soft-2: #6f67f2;
+    /* tetradic colors contrast from each other*/
+    --color-base-compliment: #f2b467;
+    --color-base-tetradic: #67f2b4;
+    --color-base-tetradic-compliment: #f267a5;
+}
+
+body {
+    margin: auto;
+    background-color: var(--color-analogous-soft-1);
+}
+header {
+    color: var(--color-base-compliment);
+    background: var(--color-analogous-soft-2); 
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+main {
+    padding-top: initial;
+    height: 100%;
+    width: 80%;
+}
+
+div {
+    font-size: 25px;
+}
+
+input {
+    width: 97%;
+    margin: 1px;
+}
+
+h1 {
+    font-size: 60px;
+    text-align: center;
+    font-family: 'Barlow', sans-serif;
+}
+
+option, input, select{
+    font-size: 25px;
+}
+
+#search-bar {
+    padding-top: 50px;
+    padding-bottom: 100%;
+    justify-content: space-around;
+    background-color: var(--color-base);
+}
+
+.flex-cntr.col {
+    flex-direction: column;
+}
+
+.flex-cntr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#input-left, #search-left {
+    max-width: 400px;
+}
+
+#search-bar-left, #search-bar-right {
+    width: 45%;
+    max-width: 350px;
+}
+
+#currency-left, #currency-right, #search-left, #search-right {
+    width: 100%;
+}
+
+@media screen and (max-width: 520px) {
+    body {
+        min-width: 300px;
+    }
+    #search-bar {
+        flex-direction: column;
+    }
+    #search-bar-left, #search-bar-right {
+        width: 45%;
+        max-width: 350px;
+        min-width: 250px;
+    }
 }
