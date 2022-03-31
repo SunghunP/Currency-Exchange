@@ -19,13 +19,13 @@ function getCodes(data, selection) {
     }
 }
 
-// // api call to populate the select elements programmatically
-// $.ajax({
-//     url: `https://v6.exchangerate-api.com/v6/${API_KEY}/codes`})
-// .then((data2) => {
-//     getCodes(data2.supported_codes, $searchLeft)
-//     getCodes(data2.supported_codes, $searchRight)
-// })
+// api call to populate the select elements programmatically
+$.ajax({
+    url: `https://v6.exchangerate-api.com/v6/${API_KEY}/codes`})
+.then((data2) => {
+    getCodes(data2.supported_codes, $searchLeft)
+    getCodes(data2.supported_codes, $searchRight)
+})
 
 // depreciated event listener for convert button (no longer needed)
 // document.querySelector('button').addEventListener("click", () => {
@@ -52,18 +52,32 @@ document.querySelector('#search-bar').addEventListener("change", (event) => {
         let selectleftVal = $searchLeft.val()
         let selectRightVal = $searchRight.val()
         let inputLeftVal = $inputLeft.val()
+        let inputRightVal = $inputRight.val()
         $.ajax({
         //url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${selectleftVal}/${selectRightVal}`
         url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/USD/CAD`
         })
         .then((data) => {
-
             console.log("success")
             let rate = data.conversion_rate
-            let final = inputLeftVal * rate.toFixed(2)
-            $displayRight.text(final)
-            
-
+            let final = 0
+            document.querySelectorAll('input').forEach(input => 
+                input.addEventListener('change', (event) => {
+                    console.log(rate)
+                    if (event.target.id === 'input-left') {
+                        inputLeftVal = $inputLeft.val()
+                        console.log("This reached inside the input event listener")
+                        final = inputLeftVal * rate.toFixed(2)
+                        $inputRight.val(final)
+                    }
+                    else if (event.target.id === 'input-right') {
+                        inputRightVal = $inputRight.val()
+                        console.log("This reached inside the input event listener")
+                        final = inputRightVal / rate.toFixed(2)
+                        $inputLeft.val(final)
+                    }
+                })
+            )
         })
     }
 })
