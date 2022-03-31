@@ -12,40 +12,34 @@
     <script defer src="./js/config.js"></script>
     <script defer src="./js/script.js"></script>
     <link rel="stylesheet" href="./css/styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@700&family=Fredoka&display=swap" rel="stylesheet"> 
 </head>
 
-<body>
-    <header>
-        <h1>Currency Exchange</h1>
+<body class="flex-cntr col">
+    <header class="flex-cntr">
+        <h1>CURRENCY EXCHANGE</h1>
     </header>
 
     <main>
         <div id="search-bar" class="flex-cntr">
             
-            <div class="search-left">
+            <div id="search-bar-left" class="search-left flex-cntr col">
                 <input type="number" name="currency-exchange" id="input-left" value="1.00">
-                <div id="currency-left">
-                    <select id="search-left">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
+                <div id="currency-left" class="flex-cntr">
+                    <select id="search-left"><option>United States Dollar (USD)</option></select>
                 </div>
             </div>
-
-            <div class="search-right">
+            <div id="equals-sign"><h2> = </h2></div>
+            <div id="search-bar-right"class="search-right flex-cntr col">
                 <input type="number" name="currency-exchange" id="input-right" value="1.00">
-                <div id="display-right">100</div>
-                <div id="currency-right">
-                    <select id="search-right">
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                    </select>
+                <div id="currency-right" class="flex-cntr">
+                    <select id="search-right"><option>United States Dollar (USD)</option></select>
                 </div>
             </div>
         </div>
-        
+
     </main>
 </body>
 </html>
