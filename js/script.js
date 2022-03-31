@@ -6,6 +6,8 @@ const $searchLeft = $('#search-left')
 const $searchRight = $('#search-right')
 const $inputLeft = $('#input-left')
 const $inputRight = $('#input-right')
+const $displayRate = $('#conversion-rate')
+
 // Function to get country codes from api and append them the html element you want. 
 function getCodes(data, selection) {
     for (let array of data) {
@@ -16,25 +18,22 @@ function getCodes(data, selection) {
     }
 }
 
-// // api call to populate the select elements programmatically
-// $.ajax({
-//     url: `https://v6.exchangerate-api.com/v6/${API_KEY}/codes`})
-// .then((data2) => {
-//     getCodes(data2.supported_codes, $searchLeft)
-//     getCodes(data2.supported_codes, $searchRight)
-// })
+// api call to populate the select elements programmatically
+$.ajax({
+    url: `https://v6.exchangerate-api.com/v6/${API_KEY}/codes`})
+.then((data2) => {
+    getCodes(data2.supported_codes, $searchLeft)
+    getCodes(data2.supported_codes, $searchRight)
+})
 
 // I should use event propogation to handle the change of the select and input elements.
 // event listener that selects the parent of the two select elements and input element and listens for a change in any of them.
 document.querySelector('#search-bar').addEventListener("change", (event) => {
-    console.log("This reached inside the div event listener")
-
     // if the selected target is a select element.
     if (event.target.tagName === 'SELECT') {
         // grabs the two selected currencies to convert from/to
         let selectleftVal = $searchLeft.val()
         let selectRightVal = $searchRight.val()
-
         $.ajax({
             url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${selectleftVal}/${selectRightVal}`
         })
@@ -42,6 +41,10 @@ document.querySelector('#search-bar').addEventListener("change", (event) => {
             // stores the conversion rate 
             let rate = data.conversion_rate
             let convertedVal = 0
+
+            // displays the rate of exchange for the two currencies.
+            $displayRate.text(`1 ${selectleftVal} is equal to ${rate} ${selectRightVal}`)
+
             // event listener that looks for any changes in both of the input fields.
             document.querySelectorAll('input').forEach(input => 
                 input.addEventListener('change', (event) => {
@@ -49,7 +52,7 @@ document.querySelector('#search-bar').addEventListener("change", (event) => {
                     if (event.target.id === 'input-left') {
                         // grabs the current value of #input-left and converts it into the other currency using the saved rate.
                         inputLeftVal = $inputLeft.val()
-                        final = inputLeftVal * rate.toFixed(2)
+                        convertedVal = inputLeftVal * rate.toFixed(2)
                         // cannot use .text() on input elements to change the value. 
                         $inputRight.val(convertedVal)
                     }
@@ -57,7 +60,7 @@ document.querySelector('#search-bar').addEventListener("change", (event) => {
                     else if (event.target.id === 'input-right') {
                         // grabs current value of #input-right and applies some math to convert it into the other currency
                         inputRightVal = $inputRight.val()
-                        final = inputRightVal / rate.toFixed(2)
+                        convertedVal = inputRightVal / rate.toFixed(2)
                         $inputLeft.val(convertedVal)
                     }
                 })
