@@ -22,24 +22,36 @@
         <h1>CURRENCY EXCHANGE</h1>
     </header>
 
-    <main>
-        <div id="search-bar" class="flex-cntr">
-            
-            <div id="search-bar-left" class="search-left flex-cntr col">
-                <input type="number" name="currency-exchange" id="input-left" value="1.00">
-                <div id="currency-left" class="flex-cntr">
-                    <select id="search-left"><option>United States Dollar (USD)</option></select>
-                </div>
-            </div>
-            <div id="equals-sign"><h2> = </h2></div>
-            <div id="search-bar-right"class="search-right flex-cntr col">
-                <input type="number" name="currency-exchange" id="input-right" value="1.00">
-                <div id="currency-right" class="flex-cntr">
-                    <select id="search-right"><option>United States Dollar (USD)</option></select>
-                </div>
-            </div>
+    <main class="flex-cntr col">
+        <div id="website-details">
+            This website allows you to convert bewteen two currencies of your choosing! Please select from the 161 countries from the dropdown menu
         </div>
 
+        <div id="search-bar" class="flex-cntr col">
+            <div id="search-input" class="flex-cntr">
+                <div id="search-bar-left" class="search-left flex-cntr col">
+                    <input type="number" name="currency-exchange" id="input-left" value="1.00">
+                    <div id="currency-left" class="flex-cntr">
+                        <select id="search-left"></select>
+                    </div>
+                </div>
+
+                <div id="equals-sign"><h2> = </h2></div>
+                <div id="search-bar-right"class="search-right flex-cntr col">
+                    <input type="number" name="currency-exchange" id="input-right" value="1.00">
+                    <div id="currency-right" class="flex-cntr">
+                        <select id="search-right"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="conversion-rate"></div>
+        </div>
+
+        <div id="website-note">
+            ***NOTE*** These values are updated once per day so they might not be the most accurate.<br/>
+            Also these rates are indicitive of the midpoint rates. 
+        </div>
     </main>
 </body>
 </html>
