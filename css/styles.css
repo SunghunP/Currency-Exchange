@@ -38,6 +38,11 @@ div {
     text-align: center;
 }
 
+footer {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
 #website-details {
     font-size: 30px;
     margin-bottom: 50px;
