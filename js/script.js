@@ -48,33 +48,36 @@ $.ajax({
 document.querySelector('#search-bar').addEventListener("change", (event) => {
     console.log("This reached inside the div event listener")
 
+    // if the selected target is a select element.
     if (event.target.tagName === 'SELECT') {
+        // grabs the two selected currencies to convert from/to
         let selectleftVal = $searchLeft.val()
         let selectRightVal = $searchRight.val()
-        let inputLeftVal = $inputLeft.val()
-        let inputRightVal = $inputRight.val()
+
         $.ajax({
-        //url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${selectleftVal}/${selectRightVal}`
-        url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/USD/CAD`
+            url: `https://v6.exchangerate-api.com/v6/${API_KEY}/pair/${selectleftVal}/${selectRightVal}`
         })
         .then((data) => {
-            console.log("success")
+            // stores the conversion rate 
             let rate = data.conversion_rate
-            let final = 0
+            let convertedVal = 0
+            // event listener that looks for any changes in both of the input fields.
             document.querySelectorAll('input').forEach(input => 
                 input.addEventListener('change', (event) => {
-                    console.log(rate)
+                    // if the change occures on $input-left
                     if (event.target.id === 'input-left') {
+                        // grabs the current value of #input-left and converts it into the other currency using the saved rate.
                         inputLeftVal = $inputLeft.val()
-                        console.log("This reached inside the input event listener")
                         final = inputLeftVal * rate.toFixed(2)
-                        $inputRight.val(final)
+                        // cannot use .text() on input elements to change the value. 
+                        $inputRight.val(convertedVal)
                     }
+                    // if the change occurs on #input-right
                     else if (event.target.id === 'input-right') {
+                        // grabs current value of #input-right and applies some math to convert it into the other currency
                         inputRightVal = $inputRight.val()
-                        console.log("This reached inside the input event listener")
                         final = inputRightVal / rate.toFixed(2)
-                        $inputLeft.val(final)
+                        $inputLeft.val(convertedVal)
                     }
                 })
             )
