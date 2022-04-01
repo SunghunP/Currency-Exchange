@@ -52,19 +52,21 @@ document.querySelector('#search-bar').addEventListener("change", (event) => {
                     if (event.target.id === 'input-left') {
                         // grabs the current value of #input-left and converts it into the other currency using the saved rate.
                         inputLeftVal = $inputLeft.val()
-                        convertedVal = inputLeftVal * rate.toFixed(2)
+                        convertedVal = inputLeftVal * rate
                         // cannot use .text() on input elements to change the value. 
-                        $inputRight.val(convertedVal)
+                        $inputRight.val(convertedVal.toFixed(2))
                     }
                     // if the change occurs on #input-right
                     else if (event.target.id === 'input-right') {
                         // grabs current value of #input-right and applies some math to convert it into the other currency
                         inputRightVal = $inputRight.val()
-                        convertedVal = inputRightVal / rate.toFixed(2)
-                        $inputLeft.val(convertedVal)
+                        convertedVal = inputRightVal / rate
+                        $inputLeft.val(convertedVal.toFixed(2))
                     }
                 })
             )
         })
     }
 })
+
+{}
